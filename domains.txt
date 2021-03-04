@@ -1,1 +1,2 @@
 openindiana.aurora-opencloud.org
+jenkins.openindiana.aurora-opencloud.org
