@@ -1,3 +1,4 @@
 openindiana.aurora-opencloud.org
 jenkins.openindiana.aurora-opencloud.org
 pkg-test.openindiana.aurora-opencloud.org
+pkg.openindiana.aurora-opencloud.org
