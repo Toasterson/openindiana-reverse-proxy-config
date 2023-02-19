@@ -3,3 +3,4 @@ jenkins.openindiana.aurora-opencloud.org
 pkg-test.openindiana.aurora-opencloud.org
 pkg.openindiana.aurora-opencloud.org
 dlc.openindiana.aurora-opencloud.org
+pkg.solarm.org
