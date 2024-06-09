@@ -6,3 +6,4 @@ dlc.openindiana.aurora-opencloud.org
 pkg.solarm.org
 openindiana.org www.openindiana.org
 dlc.openindiana.org
+jenkins-new.openindiana.aurora-opencloud.org
