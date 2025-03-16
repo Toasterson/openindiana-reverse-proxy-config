@@ -60,7 +60,7 @@ export CADDY_ETC_ROOT="${CADDY_ETC_ROOT}"
 
 case "$1" in
 start)
-        ${CADDY_BIN}/caddy start -a Caddyfile ${STARTUP_OPTIONS} -c ${CADDY_ETC_ROOT}/Caddyfile 2>&1
+        ${CADDY_BIN}/caddy start -a caddyfile ${STARTUP_OPTIONS} -c ${CADDY_ETC_ROOT}/Caddyfile 2>&1
         ;;
 *)
         echo "Usage: $0 {start}"
