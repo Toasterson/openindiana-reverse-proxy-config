@@ -21,6 +21,7 @@ ulimit -n 65535
 
 CADDY_USR_ROOT=/usr/local
 CADDY_ETC_ROOT=/etc/caddy
+export HOME=/var/caddy
 
 STARTUP_OPTIONS=
 
@@ -59,7 +60,7 @@ export CADDY_ETC_ROOT="${CADDY_ETC_ROOT}"
 
 case "$1" in
 start)
-        ${CADDY_BIN}/caddy ${STARTUP_OPTIONS} -c ${CADDY_ETC_ROOT}/Caddyfile 2>&1
+        ${CADDY_BIN}/caddy ${STARTUP_OPTIONS} ${CADDY_ETC_ROOT}/Caddyfile 2>&1
         ;;
 *)
         echo "Usage: $0 {start}"
