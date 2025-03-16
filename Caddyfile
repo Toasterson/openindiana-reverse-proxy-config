@@ -1,0 +1,4 @@
+demo.openindiana.org {
+	root * /var/www/demo.openindiana.org
+	file_server browse
+}
