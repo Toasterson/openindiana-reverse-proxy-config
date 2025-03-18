@@ -107,6 +107,18 @@ pkg.openindiana.org {
     }
 }
 
+pkg.openindiana.aurora-opencloud.org {
+    log
+    @read `method('GET', 'HEAD')`
+    handle @read {
+        reverse_proxy * http://10.1.0.11:80
+    }
+    respond 403 {
+        body "Forbidden"
+        close
+    }
+}
+
 hipster.openindiana.org {
     log
     request_body {
