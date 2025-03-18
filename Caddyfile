@@ -1,4 +1,119 @@
-demo.openindiana.org {
-	root * /var/www/demo.openindiana.org
-	file_server browse
+{
+        log default {
+                format json
+                output file /var/caddy/access-log.ndjson {
+                        roll_size 1gb
+                        roll_keep 5
+                        roll_keep_for 720h
+                }
+                include http.log.access
+        }
+}
+
+jenkins.openindiana.aurora-opencloud.org {
+    log
+    request_body {
+    	max_size 10MB
+    }
+    reverse_proxy * http://10.1.0.10:8080
+}
+
+pkg-test.openindiana.aurora-opencloud.org {
+    log
+    @read `method('GET', 'HEAD')`
+    handle @read {
+        reverse_proxy * http://10.1.0.12:80
+    }
+    respond 403 {
+        body "Forbidden"
+        close
+    }
+}
+
+dlc.openindiana.aurora-opencloud.org {
+    log
+    root * /var/www/dlc
+    header X-Robots-Tag "noindex"
+    file_server browse
+}
+
+pkg.solarm.org {
+    log
+    @read `method('GET', 'HEAD')`
+    handle @read {
+        reverse_proxy * http://10.1.0.11:80
+    }
+    respond 403 {
+        body "Forbidden"
+        close
+    }
+}
+
+openindiana.org www.openindiana.org {
+    log
+    root * /var/www/openindiana.org/dist
+
+    handle /mailman/* {
+        reverse_proxy https://95.131.249.92 {
+            header_up Host openindiana.org
+            transport http {
+                    tls_insecure_skip_verify
+                    tls_server_name openindiana.org
+            }
+        }
+    }
+
+    handle /pipermail/* {
+        reverse_proxy https://95.131.249.92 {
+            header_up Host openindiana.org
+            transport http {
+                    tls_insecure_skip_verify
+                    tls_server_name openindiana.org
+            }
+        }
+    }
+
+    handle /icons/* {
+        reverse_proxy https://95.131.249.92  {
+            header_up Host openindiana.org
+            transport http {
+                    tls_insecure_skip_verify
+                    tls_server_name openindiana.org
+            }
+        }
+    }
+
+    handle {
+        file_server
+    }
+}
+
+dlc.openindiana.org {
+    log
+    root * /var/www/dlc/hipster
+    header X-Robots-Tag "noindex"
+    file_server browse
+}
+
+pkg.openindiana.org {
+    log
+    @read `method('GET', 'HEAD')`
+    handle @read {
+        reverse_proxy * http://10.1.0.11:80
+    }
+    respond 403 {
+        body "Forbidden"
+        close
+    }
+}
+
+hipster.openindiana.org {
+    log
+    request_body {
+    	max_size 10MB
+    }
+    root * /opt/config/landingpages/hipster
+    file_server
+    reverse_proxy /jenkins/* http://10.1.0.70:8080
+    reverse_proxy /logs/* http://10.1.0.70:80
 }
