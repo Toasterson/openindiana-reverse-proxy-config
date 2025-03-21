@@ -126,6 +126,6 @@ hipster.openindiana.org {
     }
     root * /opt/config/landingpages/hipster
     file_server
-    reverse_proxy /jenkins/* http://10.1.0.70:8080
-    reverse_proxy /logs/* http://10.1.0.70:80
+    reverse_proxy /jenkins* http://10.1.0.70:8080
+    reverse_proxy /logs* http://10.1.0.70:80
 }
